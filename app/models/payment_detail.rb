@@ -1,5 +1,5 @@
 class PaymentDetail < ActiveRecord::Base
-  attr_accessible :amount
+  attr_accessible :amount, :user
 	attr_protected :user_id, :payable_id, :payable_type
 
 	belongs_to :user

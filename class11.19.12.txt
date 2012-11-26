@@ -1,0 +1,16 @@
+class Advertisement < ActiveRecord::Base
+
+validate :check_advertisement_bounds
+
+belongs_to :board
+
+private
+	def check_advertisement_bounds
+		if board.width<=x_location
+			errors.add(:x_location, 'reason for validation error')
+		end
+	end
+	.
+	.
+	.
+end
