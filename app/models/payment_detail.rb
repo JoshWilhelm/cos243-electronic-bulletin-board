@@ -4,4 +4,7 @@ class PaymentDetail < ActiveRecord::Base
 
 	belongs_to :user
 	belongs_to :payable, polymorphic: true
+	
+	validates :amount, presence: true,
+		:numericality => { :greater_than_or_equal_to => 0 }
 end

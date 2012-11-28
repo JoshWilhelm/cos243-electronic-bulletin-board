@@ -1,5 +1,6 @@
 class Advertisement < ActiveRecord::Base
-  attr_accessible :board_id, :height, :image, :user_id, :width, :x_location, :y_location
+  attr_accessible :height, :image, :width, :x_location, :y_location
+	attr_protected :board_id, :user_id
 
 	has_many :tiles
 	belongs_to :user
@@ -21,8 +22,10 @@ class Advertisement < ActiveRecord::Base
 	private
 		def check_advertisement_bounds
 			if board.width<=x_location
-				errors.add(:x_location, 'reason for validation error')
+				errors.add(:x_location, 'width out of bounds')
 			end
+			if board.height<=y_location
+				errors.add(:y_location, 'height out of bounds')
+ 			end
 		end
-		
 end
