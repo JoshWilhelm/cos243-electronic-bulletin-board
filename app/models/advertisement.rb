@@ -1,5 +1,5 @@
 class Advertisement < ActiveRecord::Base
-  attr_accessible :height, :image, :width, :x_location, :y_location
+  attr_accessible :height, :image, :width, :x_location, :y_location, :charge, :image_contents=
 	attr_protected :board_id, :user_id
 
 	has_many :tiles
@@ -18,14 +18,35 @@ class Advertisement < ActiveRecord::Base
 	validates :image, presence:  true
 	validate :check_advertisement_bounds
 	
+	def charge
+	end
+	
+	def image_contents=
+	end
 	
 	private
 		def check_advertisement_bounds
-			if board.width<=x_location
-				errors.add(:x_location, 'width out of bounds')
+			unless x_location.nil?
+				if board.width <= x_location
+					errors.add(:x_location, "width out of bounds")
+				end
+				if width > board.width
+					errors.add(:x_location, "height larger than board height")
+				end
+				if board.width < (x_location + width)
+					errors.add(:x_location, "x_location & width combined larger than board width")
+				end
 			end
-			if board.height<=y_location
-				errors.add(:y_location, 'height out of bounds')
+			unless y_location.nil?
+				if board.height <= y_location
+					errors.add(:y_location, "height out of bounds")
+ 				end
+ 				if height > board.height
+					errors.add(:y_location, "height larger than board height")
+				end
+				if board.height < (y_location + height)
+					errors.add(:y_location, "y_location & height combined larger than board height")
+				end
  			end
 		end
 end

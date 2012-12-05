@@ -1,5 +1,5 @@
 class Board < ActiveRecord::Base
-  attr_accessible :height, :name, :timezone, :width
+  attr_accessible :height, :name, :timezone, :width, :age
 	attr_protected :user_id
 
 	has_many :advertisements
@@ -16,4 +16,7 @@ class Board < ActiveRecord::Base
 		:numericality => { :greater_than_or_equal_to => 1 }
 	validates :timezone, presence:  true
 	validates_inclusion_of :timezone, :in => ActiveSupport::TimeZone.zones_map { |m| m.name }, :message => "is not a valid Time Zone"
+	
+	def age
+	end
 end
