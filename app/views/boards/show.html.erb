@@ -1,0 +1,23 @@
+
+<div class="row">
+	<div class="span6 offset">
+		<h1><%= @board.name %></h1>
+		<div><%= @board.timezone %></div>
+		<div><%= "Created by user: #{@board.user.name}" %></div>
+		<div><%= "Board width: #{pluralize(@board.width, 'tile')}" %></div>
+		<div><%= "Board height: #{pluralize(@board.height, 'tile')}" %></div>
+		<%= button_to "Create new Ad", new_board_advertisement_path(@board), class: "btn btn-large btn-primary", method: "get" %>
+		<h2>Advertisements on board</h2>
+		<ul class="advertisements">
+		  <% @board.advertisements.each do |ad| %>
+		  <li>
+			<%= "Username: #{ad.user.name}" %> |
+			<%= "Ad width: #{pluralize(ad.width, 'tile')}" %> |
+			<%= "Ad height: #{pluralize(ad.height, 'tile')}" %> |
+			<%= "X Location: #{ad.x_location}" %> |
+			<%= "Y Location: #{ad.y_location}" %> 
+		  </li>
+		   <% end %>
+		</ul>
+	</div>
+</div>

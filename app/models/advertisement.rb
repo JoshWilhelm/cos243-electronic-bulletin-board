@@ -21,9 +21,11 @@ class Advertisement < ActiveRecord::Base
 	def charge
 	end
 	
-	def image_contents=
+	def image_contents=(object)
+		self.image = object.read()
 	end
-	
+  	
+  	
 	private
 		def check_advertisement_bounds
 			unless x_location.nil?

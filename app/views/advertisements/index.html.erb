@@ -1,0 +1,17 @@
+<% provide(:title, @board.name) %>
+<h1> Advertisements for <%= @board.name %> </h1>
+
+<ul class="ads">
+  <% @advertisements.each do |ad| %>
+  <li>
+    
+    <%= "Username: #{ad.user.name}" %> |
+    <%= "Width: #{pluralize(ad.width, 'tile')}" %> |
+    <%= "Height: #{pluralize(ad.height, 'tile')}" %> |
+    <%= "X Location: #{ad.x_location}" %> |
+    <%= "Y Location: #{ad.y_location}" %> 
+  
+  </li>
+  
+   <% end %>
+</ul>

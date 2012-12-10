@@ -1,0 +1,13 @@
+<% provide(:title, 'All Boards') %>
+<h1>All Boards</h1>
+
+<ul class="boards">
+	<% @boards.each do |board| %>
+	<li>
+		<%= link_to board.name, board %>
+		(<%= board.width %>x<%= board.height %>)
+	</li>
+	<% end %>
+</ul>
+
+<%= button_to "Create board", new_board_path, class: "btn btn-large btn-primary", method: "get" %>

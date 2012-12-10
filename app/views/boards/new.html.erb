@@ -1,0 +1,23 @@
+<% provide(:title, 'New Board') %>
+<h1>New Board</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@board) do |board| %>
+    
+      <%= board.label :name %>
+      <%= board.text_field :name %>
+
+      <%= board.label :timezone %>
+      <%= board.time_zone_select(:timezone) %>
+
+      <%= board.label :width %>
+      <%= board.text_field :width %>
+
+      <%= board.label :height %>
+      <%= board.text_field :height %>
+        
+      <%= board.submit "Create new board", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
