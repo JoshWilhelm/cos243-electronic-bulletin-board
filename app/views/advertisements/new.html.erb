@@ -1,4 +1,4 @@
-<% provide(:title, "Create New Advertisement") %>
+<% provide(:title, "Create Advertisement") %>
 <h1>Create New Advertisment</h1>
 
 <div class="row">
@@ -9,10 +9,10 @@
 		<%= ad.label :image_contents %>
 		<%= ad.file_field :image_contents %>
 
-		<%= ad.label :x_location %>
+		<%= ad.label :x_location, "X Location" %>
 		<%= ad.text_field :x_location %>
 
-		<%= ad.label :y_location %>
+		<%= ad.label :y_location, "Y Location" %>
 		<%= ad.text_field :y_location %>
 
 		<%= ad.label :width %>
@@ -21,7 +21,7 @@
 		<%= ad.label :height %>
 		<%= ad.text_field :height %>
 
-		<%= ad.submit "Create new advertisement", class: "btn btn-medium btn-primary" %>
+		<%= ad.submit "Create advertisement", class: "btn btn-medium btn-primary" %>
 	<% end %>
 	</div>
 </div>

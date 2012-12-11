@@ -20,12 +20,12 @@ class Board < ActiveRecord::Base
 	before_create :make_initial_ad
 	
 	def age
-  		tiles.each do |tile|
-     		tile.age
-  		end
-  		advertisements.each do |ad|
-    		ad.charge
-  		end
+  		# tiles.each do |tile|
+#      		tile.age
+#   		end
+#   		advertisements.each do |ad|
+#     		ad.charge
+#   		end
 	end
 	
 	def make_initial_ad

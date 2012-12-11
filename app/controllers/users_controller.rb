@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 
   def new
 		if signed_in?
+			flash[:error] = "Not signed in"
 			redirect_to(root_path)
 		else
 			@user = User.new

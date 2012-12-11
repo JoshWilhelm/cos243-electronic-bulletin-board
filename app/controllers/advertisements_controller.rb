@@ -14,7 +14,7 @@ class AdvertisementsController < ApplicationController
 			@advertisement.image = @advertisement.image_contents.read()
 		end
 		if @advertisement.save
-			flash[:success] = "New advertisement created!"
+			flash[:success] = "New advertisement created"
 			redirect_to @board
 		else
 			flash[:error] = 'Invalid advertisement info'

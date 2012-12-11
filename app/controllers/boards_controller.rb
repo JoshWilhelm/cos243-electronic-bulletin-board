@@ -19,9 +19,10 @@ class BoardsController < ApplicationController
             @advertisement.width = @board.width
             @advertisement.user = current_user
             @advertisement.save
-            flash[:success] = "New Board Created!"
+            flash[:success] = "Board Created"
             redirect_to @board
         else
+        	flash[:error] = 'Invalid board info'
         	render 'new'
         end
     end
