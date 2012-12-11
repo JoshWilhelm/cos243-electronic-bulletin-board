@@ -17,11 +17,13 @@ class AdvertisementsController < ApplicationController
 			flash[:success] = "New advertisement created!"
 			redirect_to @board
 		else
+			flash[:error] = 'Invalid advertisement info'
 			render 'new'
 		end
 	end
 	
 	def index
         @board = Board.find(params[:board_id])
+        @ads = @board.advertisements
     end
 end

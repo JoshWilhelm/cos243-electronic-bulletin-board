@@ -16,15 +16,45 @@ class Advertisement < ActiveRecord::Base
 	validates :height, presence:  true,
 			:numericality => { :greater_than_or_equal_to => 0 }
 	validates :image, presence:  true
+	
 	validate :check_advertisement_bounds
 	
-	def charge
-	end
+	before_create :create_tiles
+  	before_create :charge
 	
 	def image_contents=(object)
 		self.image = object.read()
 	end
+	
+	def charge
+  		# total_cost = 0 
+#   		if !(board.payment_detail.nil?)
+#   			pd = payment_details.build(:amount => width*height)
+#   			pd.user = user
+#   		end
+  	end
   	
+  	def create_tiles
+	  	for x in x_location..(x_location + width - 1) do 
+	  		for y in y_location..(y_location + height - 1) do
+	  			@tile = board.tiles.where(:x_location => x, :y_location => y).first
+	  			if @tile.nil?
+		  			@tile = tiles.build(:x_location => x, :y_location => y)
+		  			@tile.cost = 0
+		  		else
+		  			previous_cost = @tile.cost
+		  			@tile.destroy
+		  			@tile = tiles.build(:x_location => x, :y_location => y)
+		  			new_cost = 2 * previous_cost
+		  			if new_cost < 1
+		  				new_cost = 1
+		  			end
+		  			new_cost = new_cost.to_f
+		  			@tile.cost = new_cost
+		  		end
+	  		end
+	  	end
+  end
   	
 	private
 		def check_advertisement_bounds

@@ -5,6 +5,7 @@
 	<% @boards.each do |board| %>
 	<li>
 		<%= link_to board.name, board %>
+		<%= gravatar_for @user, size: 64 %>
 		(<%= board.width %>x<%= board.height %>)
 	</li>
 	<% end %>

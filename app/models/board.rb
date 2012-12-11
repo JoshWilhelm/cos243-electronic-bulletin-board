@@ -20,12 +20,21 @@ class Board < ActiveRecord::Base
 	before_create :make_initial_ad
 	
 	def age
+  		tiles.each do |tile|
+     		tile.age
+  		end
+  		advertisements.each do |ad|
+    		ad.charge
+  		end
 	end
 	
 	def make_initial_ad
 		ad = advertisements.build(:image => 'rails.png', :x_location => 0, :y_location => 0, :width => width, :height => height)
 		ad.user = user
-		pd = create_payment_detail(:amount => width*height)
-		pd.user = user
   	end
+  	
+  	def make_payment_detail
+    	pd = create_payment_detail(:amount => width*height)
+    	pd.user = user
+  end
 end

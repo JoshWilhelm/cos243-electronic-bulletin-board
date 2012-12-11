@@ -4,6 +4,7 @@ ElectronicBulletinBoard::Application.routes.draw do
 	resources :images
 	resources :boards do
 		resources :advertisements
+		resources :payment_details
 	end
 
   	root to: 'static_pages#home'
